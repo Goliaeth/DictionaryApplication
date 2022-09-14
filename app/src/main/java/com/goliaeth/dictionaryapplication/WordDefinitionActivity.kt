@@ -2,10 +2,19 @@ package com.goliaeth.dictionaryapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.goliaeth.dictionaryapplication.databinding.ActivityMainBinding
 
 class WordDefinitionActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_word_definition)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+
+
     }
 }
