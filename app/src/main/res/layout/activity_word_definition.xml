@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="@color/black"
+        android:gravity="center"
         android:layout_margin="@dimen/margin_eight"
         android:textSize="@dimen/text_size_16"
         tools:text="@string/tools_definition"/>

@@ -1,5 +1,6 @@
 package com.goliaeth.dictionaryapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -12,6 +13,7 @@ import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
 
+    private val KEY = "WORD_DEFINITION"
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,5 +46,9 @@ class MainActivity : AppCompatActivity() {
         val firstIndex = jsonArray.getJSONObject(0)
         val getShortDef = firstIndex.getJSONArray("shortdef")
         val firstShortDef = getShortDef.get(0)
+
+        val intent = Intent(this,WordDefinitionActivity::class.java)
+        intent.putExtra(KEY, firstShortDef.toString())
+        startActivity(intent)
     }
 }
