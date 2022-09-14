@@ -24,14 +24,15 @@ class MainActivity : AppCompatActivity() {
 
         val queue = Volley.newRequestQueue(this)
         binding.findButton.setOnClickListener {
-            val word = binding.wordEditText.text
-            val apiKey = "60ef21cb-ed0b-4dd4-b8e9-8e6314833b19"
-            val url =
-                "https://www.dictionaryapi.com/api/v3/references/learners/json/$word?key=$apiKey"
 
+            val url = getUrl()
             val stringRequest = StringRequest(Request.Method.GET, url,
                 { response ->
-                    extractDefinitionFromJson(response)
+                    try {
+                        extractDefinitionFromJson(response)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 },
                 { error ->
                     Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
@@ -39,6 +40,14 @@ class MainActivity : AppCompatActivity() {
 
             queue.add(stringRequest)
         }
+    }
+
+    private fun getUrl(): String {
+        val word = binding.wordEditText.text
+        val apiKey = "60ef21cb-ed0b-4dd4-b8e9-8e6314833b19"
+        val url =
+            "https://www.dictionaryapi.com/api/v3/references/learners/json/$word?key=$apiKey"
+        return  url
     }
 
     private fun extractDefinitionFromJson(response: String) {
